@@ -1,0 +1,31 @@
+postOrderRequestBody:
+  title: Order Request Body
+  type: object
+  properties:
+    userId: 
+      type: integer
+      description: ユーザーID
+      example: 1
+    orderDate:
+      type: string
+      format: date
+      description: 注文日
+      example: '2021-01-01'
+
+postOrderResponseBody:
+  title: Order Response Body
+  type: object
+  properties:
+    orderId: 
+      type: integer
+      description: 注文ID
+      example: 1
+    userId:
+      type: integer
+      description: ユーザーID
+      example: 1
+    orderDate:
+      type: string
+      format: date
+      description: 注文日
+      example: '2021-01-01'

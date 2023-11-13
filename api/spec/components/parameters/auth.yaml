@@ -1,0 +1,7 @@
+authToken:
+  name: Authorization
+  in: header
+  description: Bearer token
+  required: true
+  schema:
+    type: string

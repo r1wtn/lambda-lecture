@@ -1,0 +1,16 @@
+postOrderRequestBody:
+  summary: Order Response Body Example
+  value: |-
+    {
+      "userId": 1,
+      "orderDate": "2021-01-01"
+    }
+
+postOrderResponseBody:
+  summary: Order Response Body Example
+  value: |-
+    {
+      "orderId": 1,
+      "userId": 1,
+      "orderDate": "2021-01-01"
+    }

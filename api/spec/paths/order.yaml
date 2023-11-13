@@ -1,0 +1,45 @@
+order:
+  get:
+    summary: 注文の一覧を取得する
+    operationId: getOrders
+    tags:
+      - Order
+    parameters:
+      - $ref: ../components/parameters/auth.yaml#/authToken
+      - name: userId
+        in: query
+        description: User ID
+        required: false
+        schema:
+          type: integer
+          example: 1
+      - name: orderDate
+        in: query
+        description: 注文日
+        required: false
+        schema:
+          type: string
+          format: date
+          example: '2021-01-01'
+  post:
+    summary: 注文を作成する
+    operationId: postOrder
+    tags:
+      - Order
+    parameters:
+      - $ref: ../components/parameters/auth.yaml#/authToken
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/order.yaml#/postOrderRequestBody
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: ../components/schemas/order.yaml#/postOrderResponseBody
+            examples:
+              postOrder:
+                $ref: ../components/examples/order.yaml#/postOrderResponseBody
