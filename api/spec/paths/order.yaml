@@ -21,6 +21,16 @@ order:
           type: string
           format: date
           example: '2021-01-01'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: ../components/schemas/order.yaml#/postOrderResponseBody
+            examples:
+              postOrder:
+                $ref: ../components/examples/order.yaml#/postOrderResponseBody
   post:
     summary: 注文を作成する
     operationId: postOrder

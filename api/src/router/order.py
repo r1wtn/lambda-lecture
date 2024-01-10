@@ -7,14 +7,13 @@ from lib.apigw.envelope import (
 )
 from lib.models import OrderQueryParameter, OrderPathParameter
 from pydantic import ValidationError
-from fastapi.encoders import jsonable_encoder
 
 router = Router()
 
 
 @router.get("")
 def get_order():
-    event = router.current_event
+    event: dict = router.current_event
     path_parameters: OrderPathParameter = parse(
         model=OrderPathParameter, event=event, envelope=ApiGatewayPathParameterEnvelope
     )
@@ -23,4 +22,8 @@ def get_order():
         event=event,
         envelope=ApiGatewayQueryParameterEnvelope,
     )
-    return jsonable_encoder(query_parameters)
+
+    # DBでふぃるた
+    product_id = query_parameters.product_id
+    number = query_parameters.number
+    return query_parameters.dict()

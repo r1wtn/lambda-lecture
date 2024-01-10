@@ -1,0 +1,118 @@
+openapi: 3.0.3
+info:
+  version: 2023.1.1
+  title: Lambda Lecture Sample API
+  description: This is a sample API for Lambda Lecture.
+servers:
+  - url: https://xxx.xxx
+    description: API Gateway
+security:
+  - CognitoAuthotizer: []
+tags:
+  - name: Order
+    description: 注文リソースに対する操作
+paths:
+  /order:
+    get:
+      summary: 注文の一覧を取得する
+      operationId: getOrders
+      tags:
+        - Order
+      parameters:
+        - $ref: '#/components/parameters/authToken'
+        - name: userId
+          in: query
+          description: User ID
+          required: false
+          schema:
+            type: integer
+            example: 1
+        - name: orderDate
+          in: query
+          description: 注文日
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2021-01-01'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postOrderResponseBody'
+              examples:
+                postOrder:
+                  $ref: '#/components/examples/postOrderResponseBody'
+    post:
+      summary: 注文を作成する
+      operationId: postOrder
+      tags:
+        - Order
+      parameters:
+        - $ref: '#/components/parameters/authToken'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postOrderRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postOrderResponseBody'
+              examples:
+                postOrder:
+                  $ref: '#/components/examples/postOrderResponseBody'
+components:
+  parameters:
+    authToken:
+      name: Authorization
+      in: header
+      description: Bearer token
+      required: true
+      schema:
+        type: string
+  schemas:
+    postOrderResponseBody:
+      title: Order Response Body
+      type: object
+      properties:
+        orderId:
+          type: integer
+          description: 注文ID
+          example: 1
+        userId:
+          type: integer
+          description: ユーザーID
+          example: 1
+        orderDate:
+          type: string
+          format: date
+          description: 注文日
+          example: '2021-01-01'
+    postOrderRequestBody:
+      title: Order Request Body
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: ユーザーID
+          example: 1
+        orderDate:
+          type: string
+          format: date
+          description: 注文日
+          example: '2021-01-01'
+  examples:
+    postOrderResponseBody:
+      summary: Order Response Body Example
+      value: |-
+        {
+          "orderId": 1,
+          "userId": 1,
+          "orderDate": "2021-01-01"
+        }

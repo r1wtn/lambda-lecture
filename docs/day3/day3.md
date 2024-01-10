@@ -226,7 +226,7 @@ el = arr[0]
 - 愚直に実装すると、こうなります。
 
 ```py
-query: dict = event.get("queryStringParameters")
+query: Union[dict, None] = event.get("queryStringParameters")
 
 if query is None:
   raise InvalieRequest("クエリパラメータは必須です。")
