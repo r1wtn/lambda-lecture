@@ -20,8 +20,7 @@ openapi.yamlを適切に書いておくことで、AWSのAPIGatewayの設定をy
 - **APIをインポート** にチェックを入れて、ファイルを選択 から 作成した `bundled.yaml` をアップロードする。
 - **APIを作成** をクリックすると、openapi.yamlの定義に従ってAPIが作成されます。
 
-![Alt text](image-1.png)
-
+![Alt text](image-12.png)
 
 ## Lambdaのセットアップ
 
