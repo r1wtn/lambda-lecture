@@ -1,5 +1,8 @@
-from dataclasses import dataclass
+from dotenv import load_dotenv
 
+load_dotenv()
+import os
+from dataclasses import dataclass
 import pytest
 from main import lambda_handler
 
@@ -15,6 +18,13 @@ class LambdaContext:
 @pytest.fixture
 def lambda_context():
     return LambdaContext()
+
+
+@pytest.fixture(scope="session")
+def location_table_name():
+    if os.getenv("LOCATION_TABLE_NAME") is None:
+        raise ValueError("env LOCATION_TABLE_NAME is not set")
+    return os.getenv("LOCATION_TABLE_NAME")
 
 
 @pytest.fixture(scope="function")

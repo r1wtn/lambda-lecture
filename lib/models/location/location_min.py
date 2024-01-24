@@ -27,9 +27,11 @@ class LocationMinimalModel(BaseModel):
             if item.get("LocationName") is None:
                 continue
             location_min_list.append(
-                {
-                    "location_id": item["LocationId"]["S"],
-                    "location_name": item["LocationName"]["S"],
-                }
+                cls(
+                    **{
+                        "location_id": item["LocationId"]["S"],
+                        "location_name": item["LocationName"]["S"],
+                    }
+                )
             )
         return location_min_list
