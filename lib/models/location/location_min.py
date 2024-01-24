@@ -10,7 +10,7 @@ class LocationMinimalModel(BaseModel):
     @classmethod
     def list_from_dynamodb(
         cls, dynamodb: Session, table_name: Optional[str] = "locations"
-    ):
+    ) -> List["LocationMinimalModel"]:
         query_option = {
             "TableName": table_name,
             "IndexName": "GSI-1-index",
